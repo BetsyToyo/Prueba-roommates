@@ -1,0 +1,28 @@
+{
+    "gastos": [
+        {
+            "id": 1,
+            "roommate": "Amparo Morales",
+            "descripcion": "articulos de cocina",
+            "monto": 17000
+        },
+        {
+            "id": 2,
+            "roommate": "Nieves Cortes",
+            "descripcion": "comida",
+            "monto": 4000
+        },
+        {
+            "id": 3,
+            "roommate": "Laís da Paz",
+            "descripcion": "aseo",
+            "monto": 3000
+        },
+        {
+            "id": 4,
+            "roommate": "Amparo Morales",
+            "descripcion": "aseo",
+            "monto": 2000
+        }
+    ]
+}
