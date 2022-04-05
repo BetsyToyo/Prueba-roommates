@@ -229,7 +229,8 @@ Articulos de limpieza</textarea
       const deleteGasto = async (id) => {
         await fetch("http://localhost:3000/gasto?id=" + id, {
           method: "DELETE",
-        });
+        }); 
+        
         imprimir();
       };
 
