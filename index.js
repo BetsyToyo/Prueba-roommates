@@ -8,9 +8,14 @@ const enviar = require('./correo.js');
 const res = require("express/lib/response");
 app.use(express.json());
 
+//Mostrar archivo html
+
 app.get("/", (request, response) => {
   response.sendFile(`${__dirname}/index.html`);
   });
+
+
+//Agregar nuevo Roommate
 
 app.post("/roommate", async (request, response) => {
   try {
@@ -24,6 +29,7 @@ app.post("/roommate", async (request, response) => {
   }
 });
 
+//Mostrar listado de roommates con sus respectivas cuentas
 
 app.get("/roommates", async (request, response)=>{
   try {
@@ -59,9 +65,13 @@ app.get("/roommates", async (request, response)=>{
   
 });
 
+//Envio de archivo gastos 
+
 app.get("/gastos", (request, response) => {
   response.sendFile(`${__dirname}/data/gastos.json`);
 });
+
+//Agregar nuevo gasto
 
 app.post("/gasto", async (request, response) => {
   try {
@@ -83,6 +93,8 @@ app.post("/gasto", async (request, response) => {
   }
 });
 
+//Editar gasto
+
 app.put("/gasto", async (request, response) => {
   try {
     response.setHeader("content-type", "application/json");
@@ -103,6 +115,8 @@ app.put("/gasto", async (request, response) => {
   }
 });
 
+//Eliminacion de gastos
+
 app.delete("/gasto",async (request,response)=>{
   try {
     response.setHeader("content-type", "application/json");
@@ -119,7 +133,9 @@ app.delete("/gasto",async (request,response)=>{
   }
 });
 
-app.get('/enviar', (request, response)=>{
+//Envio de correos
+
+app.get('/enviar', async (request, response)=>{
   try {
     let correos = ['betsytoyo23@gmail.com','betsy_toyo@hotmail.com'];
     let asunto = "Prueba modulo 6 aplicaciones con Node.Js"

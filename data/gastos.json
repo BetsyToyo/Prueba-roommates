@@ -5,6 +5,12 @@
             "roommate": "Amparo Morales",
             "descripcion": "Comida",
             "monto": 15000
+        },
+        {
+            "id": "6-ebb7-4d42-88ae-306965c91311",
+            "roommate": "Laís da Paz",
+            "descripcion": "Articulos de limpieza",
+            "monto": 15000
         }
     ]
 }
