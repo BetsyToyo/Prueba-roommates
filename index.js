@@ -1,3 +1,5 @@
+//Dependencias
+
 const express = require("express");
 const app = express();
 app.listen(3000, () => console.log("Servidor activo http://localhost:3000"));
@@ -50,9 +52,9 @@ app.get("/roommates", async (request, response)=>{
 
     dataRoommates.roommates[indice].debe-= (aporte.monto)/cantidadRoommates;
       if (dataRoommates.roommates[indice].recibe) {     
-        dataRoommates.roommates[indice].recibe += aporte.monto/cantidadRoommates
+        dataRoommates.roommates[indice].recibe += aporte.monto/cantidadRoommates;
       } else {      
-        dataRoommates.roommates[indice].recibe = aporte.monto/cantidadRoommates
+        dataRoommates.roommates[indice].recibe = aporte.monto/cantidadRoommates;
       }    
     });
       
@@ -78,15 +80,19 @@ app.post("/gasto", async (request, response) => {
     response.setHeader("content-type", "application/json");
     let { roommate, descripcion, monto } = request.body;
     const id = v4().slice(7);
-    let nuevoGasto = { id, roommate, descripcion, monto };
-    let gastos = JSON.parse(await fs.readFile(`${__dirname}/data/gastos.json`));
-    gastos.gastos.push(nuevoGasto);
-    await fs.writeFile(
-      `${__dirname}/data/gastos.json`,
-      JSON.stringify(gastos, null, 4),
-      "utf8"
-    );
-    response.json({ message: "Gasto registrado exitosamente" }).status(201);
+      if (!descripcion || !monto) {
+            response.json({ message: "complete los datos para agregar el gasto" })
+      } else {
+        let nuevoGasto = { id, roommate, descripcion, monto };
+          let gastos = JSON.parse(await fs.readFile(`${__dirname}/data/gastos.json`));
+          gastos.gastos.push(nuevoGasto);
+          await fs.writeFile(
+            `${__dirname}/data/gastos.json`,
+            JSON.stringify(gastos, null, 4),
+            "utf8"
+          );
+          response.json({ message: "Gasto registrado exitosamente" }).status(201);
+      }    
   } catch (error) {
     console.log(error);
     response.status(500).json({ error: error });
@@ -99,16 +105,20 @@ app.put("/gasto", async (request, response) => {
   try {
     response.setHeader("content-type", "application/json");
     let { roommate, descripcion, monto, id } = request.body;
-    let gastos = JSON.parse(await fs.readFile(`${__dirname}/data/gastos.json`));
-    gastos.gastos.map((gasto) => {
-      if (gasto.id == id) {        
-        gasto.descripcion = descripcion;
-        gasto.monto = monto;
+        if (!descripcion || !monto) {
+          response.json({ message: "complete los datos para editar el gasto" })
+      }else {
+        let gastos = JSON.parse(await fs.readFile(`${__dirname}/data/gastos.json`));
+        gastos.gastos.map((gasto) => {
+          if (gasto.id == id) {        
+            gasto.descripcion = descripcion;
+            gasto.monto = monto;
+          }
+          return roommate;
+        });
+        await fs.writeFile(`${__dirname}/data/gastos.json`,JSON.stringify(gastos, null, 4));
+        response.json({ message: "Gasto registrado exitosamente" }).status(201);
       }
-      return roommate;
-    });
-    await fs.writeFile(`${__dirname}/data/gastos.json`,JSON.stringify(gastos, null, 4));
-    response.json({ message: "Gasto registrado exitosamente" }).status(201);
   } catch (error) {
     console.log(error);
     response.status(500).json({ error: error });

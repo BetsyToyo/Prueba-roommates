@@ -176,8 +176,8 @@ Articulos de limpieza</textarea
             $("#roommates").append(`
                   <tr>
                     <td>${r.nombre}</td>
-                    <td class="text-danger">${r.debe ? r.debe : "-"}</td>
-                    <td class="text-success">${r.recibe ? r.recibe : "-"}</td>
+                    <td class="text-danger">${r.debe ? Math.round(r.debe) : "-"}</td>
+                    <td class="text-success">${r.recibe ? Math.round(r.recibe) : "-"}</td>
                   </tr>
               `);
           });

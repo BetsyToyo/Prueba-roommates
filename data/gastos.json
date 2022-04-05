@@ -1,16 +1,22 @@
 {
     "gastos": [
         {
-            "id": "b-f03e-43d7-8d32-7d1877fde4d3",
+            "id": "f-a428-42ce-a408-ea5a34620ba2",
             "roommate": "Amparo Morales",
-            "descripcion": "Comida",
+            "descripcion": "Articulos de limpieza",
             "monto": 15000
         },
         {
-            "id": "6-ebb7-4d42-88ae-306965c91311",
-            "roommate": "Laís da Paz",
+            "id": "3-4daa-4db3-88f4-8428e16d5bec",
+            "roommate": "Amparo Morales",
             "descripcion": "Articulos de limpieza",
-            "monto": 15000
+            "monto": 20000
+        },
+        {
+            "id": "6-945b-4249-ad36-b05b693cf4ae",
+            "roommate": "Laís da Paz",
+            "descripcion": "comida",
+            "monto": 40000
         }
     ]
 }
